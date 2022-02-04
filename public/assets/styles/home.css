@@ -26,7 +26,7 @@ body {
   display: flex;
   flex-direction: column;
   animation: fadeIn 1000ms ease-in-out;
-  backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px) contrast(100%);
   overflow-y: auto;
 }
 
@@ -240,4 +240,11 @@ body {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+input[type="date"] {
+  display: block;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  min-height: 1.2em;
 }
