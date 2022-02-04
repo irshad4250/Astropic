@@ -133,7 +133,7 @@ body {
     margin-bottom: 30px;
   }
   .inputBox {
-    width: 70%;
+    min-width: 70%;
   }
   .inputButton {
     width: 70%;
@@ -242,9 +242,3 @@ body {
   }
 }
 
-input[type="date"] {
-  display: block;
-  -webkit-appearance: textfield;
-  -moz-appearance: textfield;
-  min-height: 1.2em;
-}
