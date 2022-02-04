@@ -148,8 +148,8 @@ body {
   font-size: 90px;
   text-indent: -9999em;
   overflow: hidden;
-  width: 1em;
-  height: 1em;
+  width: 0.5em;
+  height: 0.5em;
   border-radius: 50%;
   margin: 72px auto;
   position: relative;
