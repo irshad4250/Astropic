@@ -6,6 +6,14 @@ function getImage(date) {
   })
 }
 
+function getFirstImage() {
+  return new Promise((resolve, reject) => {
+    axios.get("/last_image").then((results) => {
+      resolve(results.data)
+    })
+  })
+}
+
 function doChanges(obj) {
   removeImage()
   setDate(obj.stringDate)
@@ -39,12 +47,7 @@ function getInputValue() {
 }
 
 function startHomePage() {
-  let timestamp = new Date()
-  let year = timestamp.getFullYear()
-  let month = timestamp.getMonth() + 1
-  let day = timestamp.getDate()
-  let toGet = year.toString() + "-" + month.toString() + "-" + day.toString()
-  getImage(toGet).then((res) => {
+  getFirstImage().then((res) => {
     document.querySelector(".titlePicture").classList.remove("loading")
     doChanges(res)
   })

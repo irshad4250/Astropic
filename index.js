@@ -24,6 +24,38 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/Views/home.html")
 })
 
+app.get("/last_image", (req, res) => {
+  let baseUrl = process.env.GET_URL
+  toUrl = baseUrl + "api_key=" + process.env.NASA_APIKEY
+  console.log(toUrl)
+  axios
+    .get(toUrl)
+    .then((response) => {
+      let timestamp = new Date()
+      let options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }
+      let userDate = timestamp.toLocaleDateString("en-US", options)
+
+      let url
+      if (response.data.media_type != "image") {
+        url = response.data.thumbnail_url
+      } else {
+        url = response.data.url
+      }
+
+      let responseSimplification = { url: url, title: response.data.title }
+      let toReturn = { response: responseSimplification, stringDate: userDate }
+      res.send(toReturn)
+    })
+    .catch((e) => {
+      res.send({ error: true })
+    })
+})
+
 app.post("/get_image", async (req, res) => {
   const date = req.body.date
 
