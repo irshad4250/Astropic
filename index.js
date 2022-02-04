@@ -33,7 +33,8 @@ app.post("/get_image", async (req, res) => {
   let day = timestampsArr[2]
   let timestamp = new Date(year, month, day)
 
-  const getUrl = process.env.GET_URL + `api_key=${process.env.NASA_APIKEY}`
+  const getUrl =
+    process.env.GET_URL + `api_key=${process.env.NASA_APIKEY}&thumbs=true`
   const toUrl = getUrl + "&date=" + date
 
   axios
@@ -46,7 +47,16 @@ app.post("/get_image", async (req, res) => {
         day: "numeric",
       }
       let userDate = timestamp.toLocaleDateString("en-US", options)
-      let toReturn = { response: response.data, stringDate: userDate }
+
+      let url
+      if (response.data.media_type != "image") {
+        url = response.data.thumbnail_url
+      } else {
+        url = response.data.url
+      }
+
+      let responseSimplification = { url: url, title: response.data.title }
+      let toReturn = { response: responseSimplification, stringDate: userDate }
       res.send(toReturn)
     })
     .catch(() => {
