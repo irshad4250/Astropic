@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/public/assets/styles/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <title>Astropic!</title>
+  </head>
+  <body>
+    <div class="main">
+      <div
+        class="datePicture title"
+        style="font-weight: normal; font-size: 23px"
+      >
+        Today's picture
+      </div>
+      <div class="titlePicture title loading">Loading...</div>
+      <div class="pictureBox">
+        <div class="loader"></div>
+      </div>
+      <div class="inputDiv">
+        <div class="prss">Press Date and Go!</div>
+        <input class="inputBox" type="date" />
+        <button class="inputButton">Go</button>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/public/assets/scripts/ohome.js"></script>
+  </body>
+</html>
