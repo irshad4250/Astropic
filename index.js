@@ -28,9 +28,9 @@ app.post("/get_image", async (req, res) => {
   const timestampReq = req.body.timestamp
 
   let timestamp = new Date(timestampReq)
-  let year = timestamp.getFullYear()
-  let month = timestamp.getMonth() + 1
-  let date = timestamp.getDate()
+  let year = timestamp.getUTCFullYear()
+  let month = timestamp.getUTCMonth() + 1
+  let date = timestamp.getUTCDate()
 
   const getUrl = process.env.GET_URL + `api_key=${process.env.NASA_APIKEY}`
   const toUrl = getUrl + "&date=" + year + "-" + month + "-" + date
