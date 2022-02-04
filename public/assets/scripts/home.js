@@ -1,19 +1,9 @@
 function getImage(date) {
   return new Promise((resolve, reject) => {
-    axios.post("/get_image", { timestamp: date }).then((results) => {
+    axios.post("/get_image", { date: date }).then((results) => {
       resolve(results.data)
     })
   })
-}
-
-function convertToTimstamp(date) {
-  let dates = date.split("-")
-
-  let year = dates[0]
-  let month = dates[1] - 1
-  let day = dates[2]
-
-  return new Date(year, month, day)
 }
 
 function doChanges(obj) {
@@ -49,7 +39,12 @@ function getInputValue() {
 }
 
 function startHomePage() {
-  getImage(Date.now()).then((res) => {
+  let timestamp = new Date()
+  let year = timestamp.getFullYear()
+  let month = timestamp.getMonth() + 1
+  let day = timestamp.getDate()
+  let toGet = year.toString() + "-" + month.toString() + "-" + day.toString()
+  getImage(toGet).then((res) => {
     document.querySelector(".titlePicture").classList.remove("loading")
     doChanges(res)
   })
@@ -63,9 +58,8 @@ function startHomePage() {
     }
 
     let date = getInputValue()
-    let timestamp = convertToTimstamp(date)
 
-    getImage(timestamp).then((res) => {
+    getImage(date).then((res) => {
       if (res.error) {
         alert("Specified date not available!")
         return
